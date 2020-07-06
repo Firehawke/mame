@@ -1020,7 +1020,7 @@ Compiled by K1W1
 	</software>
 
 	<software name="mtntcmls">
-		<description>Attack of the Mutant Camels</description>
+		<description>Attack of the Mutant Camels (Cartridge)</description>
 		<year>1983</year>
 		<publisher>HES</publisher>
 		<info name="serial" value="C518" />
@@ -1028,6 +1028,17 @@ Compiled by K1W1
 			<feature name="slot" value="a800_8k" />
 			<dataarea name="rom" size="8192">
 				<rom name="attack of the mutant camels.rom" size="8192" crc="c933d741" sha1="06f4e357fe449be546d7059b22500a47b7c47798"/> <!-- Verified -->
+			</dataarea>
+		</part>
+	</software>
+
+	<software name="mtntcmls">
+		<description>Attack of the Mutant Camels (Disk)</description>
+		<year>1983</year>
+		<publisher>HES</publisher>
+		<part name="flop0" interface="floppy_5_25">
+			<dataarea name="flop" size="10896">
+				<rom name="attack of the mutant camels.atr" size="10896" crc="98a74b71" sha1="02cb67c8a87438468cb4f5a44465ce0949eab0c8" />
 			</dataarea>
 		</part>
 	</software>
@@ -2581,7 +2592,20 @@ Compiled by K1W1
 	</software>
 
 	<software name="gridrunr">
-		<description>Gridrunner</description>
+		<description>Gridrunner (Cartridge)</description>
+		<year>1983</year>
+		<publisher>HES</publisher>
+		<info name="serial" value="C712" />
+		<part name="cart" interface="a8bit_cart">
+			<feature name="slot" value="a800_8k" />
+			<dataarea name="rom" size="8192">
+				<rom name="gridrunner.rom" size="8192" crc="02f44555" sha1="04490bb51662713913087fbc33af507b56ca80dd"/> <!-- Verified -->
+			</dataarea>
+		</part>
+	</software>
+
+	<software name="gridrund">
+		<description>Gridrunner (Floppy)</description>
 		<year>1983</year>
 		<publisher>HES</publisher>
 		<info name="serial" value="C712" />
