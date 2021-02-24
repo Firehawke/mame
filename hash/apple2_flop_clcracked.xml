@@ -16234,6 +16234,8 @@ license:CC0
 		<year>1985</year>
 		<publisher>MECC</publisher>
 		<info name="release" value="2019-05-29"/>
+		<!-- This was redumped on Feb 21st, 2021 to fix data corruption
+		that would cause the game to crash immediately on leaving town. -->
 
 		<part name="flop1" interface="floppy_5_25">
 			<feature name="part_id" value="Side A"/>
