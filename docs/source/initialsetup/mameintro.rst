@@ -106,7 +106,7 @@ BIOS Dumps and Software
 
 Most of the systems emulated by MAME requires a dump of the internal chips of
 the original system. These can be obtained by extracting the data from an
-original unit, or finding them (at your own risk) on various place on the
+original unit, or finding them (at your own risk) at various places on the
 Internet. Being copyrighted material, MAME does not come with any of these.
 
 Also, you may want to find some software to be run on the emulated machine

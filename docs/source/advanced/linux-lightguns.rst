@@ -10,16 +10,18 @@ For the AimTrak, each lightgun exposes several USB devices once connected: 2 mou
 
 Create a new file named ``/etc/udev/rules.d/65-aimtrak.rules`` and place the following contents into it:
 
-|        # Set mode (0666) & disable libinput handling to avoid X11 picking up the wrong
-|        # interfaces/devices.
-|        SUBSYSTEMS=="usb", ATTRS{idVendor}=="d209", ATTRS{idProduct}=="160*",
-|           MODE="0666", ENV{ID_INPUT}="", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-|
-|        # For ID_USB_INTERFACE_NUM==2, re-enable libinput handling.
-|        SUBSYSTEMS=="usb", ATTRS{idVendor}=="d209", ATTRS{idProduct}=="160*",
-|            ENV{ID_USB_INTERFACE_NUM}=="02", ENV{ID_INPUT}="1",
-|            ENV{LIBINPUT_IGNORE_DEVICE}="0"
-|
+.. code-block::
+
+        # Set mode (0666) & disable libinput handling to avoid X11 picking up the wrong
+        # interfaces/devices.
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="d209", ATTRS{idProduct}=="160*",
+           MODE="0666", ENV{ID_INPUT}="", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+
+        # For ID_USB_INTERFACE_NUM==2, re-enable libinput handling.
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="d209", ATTRS{idProduct}=="160*",
+            ENV{ID_USB_INTERFACE_NUM}=="02", ENV{ID_INPUT}="1",
+            ENV{LIBINPUT_IGNORE_DEVICE}="0"
+
 
 This configuration will be correct for the AimTrak lightguns, however each brand of lightgun will require their own settings.
 
@@ -30,34 +32,41 @@ Next, we'll configure Xorg to treat the lightguns as a "Floating" device. This i
 
 In ``/etc/X11/xorg.conf.d/60-aimtrak.conf`` we will need:
 
-| Section "InputClass"
-| 	Identifier "AimTrak Guns"
-| 	MatchDevicePath "/dev/input/event*"
-| 	MatchUSBID "d209:160*"
-| 	Driver "libinput"
-| 	Option "Floating" "yes"
-| 	Option "AutoServerLayout" "no"
-| EndSection
-|
+.. code-block::
+
+ Section "InputClass"
+ 	Identifier "AimTrak Guns"
+ 	MatchDevicePath "/dev/input/event*"
+ 	MatchUSBID "d209:160*"
+ 	Driver "libinput"
+ 	Option "Floating" "yes"
+ 	Option "AutoServerLayout" "no"
+ EndSection
 
 Configure MAME
 --------------
 
 Next, we'll need to configure MAME via ``mame.ini`` to use the new lightgun device(s).
 
-* lightgun 1
-* lightgun_device lightgun
-* lightgunprovider x11
+These first three lines tell MAME to enable lightgun support, to tell MAME that we're using a lightgun instead of a mouse, and to use the x11 provider:
 
-These first three lines tell MAME to enable lightgun support, to tell MAME that we're using a lightgun instead of a mouse, and to use the x11 provider.
+.. code-block::
 
-* lightgun_index1 "Ultimarc ATRAK Device #1"
-* lightgun_index2 "Ultimarc ATRAK Device #2"
-* lightgun_index3 "Ultimarc ATRAK Device #3"
-* lightgun_index4 "Ultimarc ATRAK Device #4"
+    lightgun 1
+    lightgun_device lightgun
+    lightgunprovider x11
 
-These next lines then tell MAME to keep lightguns consistent across sessions.
+These next lines then tell MAME to keep lightguns consistent across sessions:
 
-* offscreen_reload 1
+.. code-block::
 
-Lastly, as most lightgun games require offscreen reloading and we're using a device that actually can point away from the screen, we enable that functionality.
+    lightgun_index1 "Ultimarc ATRAK Device #1"
+    lightgun_index2 "Ultimarc ATRAK Device #2"
+    lightgun_index3 "Ultimarc ATRAK Device #3"
+    lightgun_index4 "Ultimarc ATRAK Device #4"
+
+Lastly, as most lightgun games require offscreen reloading and we're using a device that actually can point away from the screen, we enable that functionality:
+
+.. code-block::
+
+    offscreen_reload 1
